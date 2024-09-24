@@ -1,6 +1,6 @@
 import turtle
 
-# to set the screen size and world coordinats
+# to set the screen size and world coordinates
 turtle.screensize(800, 600)  
 turtle.setworldcoordinates(-600, -500, 600, 600)  
 
@@ -47,7 +47,6 @@ def draw_candle(base_color, flame_color, width, height):
     turtle.up()                                                                        
     turtle.backward(height)                                                             
     turtle.down()
-                                                                     
 
 def draw_leg(x, y): 
     """
@@ -64,9 +63,9 @@ def draw_cake_legs(base_width, base_height):
     """
     leg_spacing = 30  #  the space between the left and right legs
     draw_leg(-base_width / 2 + 5 , -base_height - 60)  # left leg
-    draw_leg(-base_width / 2 + 5 + leg_spacing, -base_height - 60)  # left leg
-    draw_leg(base_width / 2 - 15 - leg_spacing, -base_height - 60)  # right leg
-    draw_leg(base_width / 2 - 15,-base_height - 60)  # right leg
+    draw_leg(-base_width / 2 + 35, -base_height - 60)  # left leg
+    draw_leg(base_width / 2 - 45, -base_height - 60)  # right leg
+    draw_leg(base_width / 2 - 15, -base_height - 60)  # right leg
 
 def draw_table(base_width, base_height, base_color):
     """
@@ -82,41 +81,37 @@ def draw_table(base_width, base_height, base_color):
     turtle.goto(-base_width / 2, 0)  # to reset position of  the turtle and start drawing the cake layers
     turtle.down()
 
-def draw_cake(base_width, layer_heights, layer_colors, cherry_color, cherry_radius):
+def draw_cake(base_width, layer1_height, layer1_color, layer2_height, layer2_color, layer3_height, layer3_color, cherry_color, cherry_radius):
     """
     this def function will draw the cake layers and cherry with the specifid parameters that it will 
     take from the user input 
     """
     turtle.speed(10)                                                                                                   #################   speed
     
-
     draw_table(base_width, 10, "gray")  # to draw the table top
 
     current_height = 0
 
     # first layer
-
-    draw_rectangle(layer_colors[0], base_width, layer_heights[0])
+    draw_rectangle(layer1_color, base_width, layer1_height)
     turtle.left(90)
-    turtle.forward(layer_heights[0])
+    turtle.forward(layer1_height)
     turtle.right(90)
-    current_height += layer_heights[0] #to add the height of the current layer to current_height
+    current_height += layer1_height #to add the height of the current layer to current_height
 
     # second layer
-
-    draw_rectangle(layer_colors[1], base_width, layer_heights[1])
+    draw_rectangle(layer2_color, base_width, layer2_height)
     turtle.left(90)
-    turtle.forward(layer_heights[1])
+    turtle.forward(layer2_height)
     turtle.right(90)
-    current_height += layer_heights[1]
+    current_height += layer2_height
 
     # third layer
-
-    draw_rectangle(layer_colors[2], base_width, layer_heights[2])
+    draw_rectangle(layer3_color, base_width, layer3_height)
     turtle.left(90)
-    turtle.forward(layer_heights[2])
+    turtle.forward(layer3_height)
     turtle.right(90)
-    current_height += layer_heights[2]
+    current_height += layer3_height
 
     # to draw the cherry on top of the cake
     turtle.up()
@@ -139,22 +134,17 @@ def main():
 
     print("Let's draw a cake!")
     base_width = int(input("How wide do you want the cake to be (from 110 to 800): "))
-    layer_heights = [
-        int(input("How high do you want layer 1 to be (from 10 to 55): ")),
-        int(input("How high do you want layer 2 to be (from 10 to 55): ")),
-        int(input("How high do you want layer 3 to be (from 10 to 55): "))
-    ]
-    layer_colors = [
-        input("What color do you want layer 1 to be: "),
-        input("What color do you want layer 2 to be: "),
-        input("What color do you want layer 3 to be: ")
-    ]
+    layer1_height = int(input("How high do you want layer 1 to be (from 10 to 55): "))
+    layer2_height = int(input("How high do you want layer 2 to be (from 10 to 55): "))
+    layer3_height = int(input("How high do you want layer 3 to be (from 10 to 55): "))
+    layer1_color = input("What color do you want layer 1 to be: ")
+    layer2_color = input("What color do you want layer 2 to be: ")
+    layer3_color = input("What color do you want layer 3 to be: ")
     cherry_color = input("Enter the color of the cherry on top: ")
     cherry_radius = int(input("How big do you want the cherry to be (from 20 to 50): "))
 
     """this call will take the user input and execute it in the draw cake function we wrote earlier  """
     
-    draw_cake(base_width, layer_heights, layer_colors, cherry_color, cherry_radius)
+    draw_cake(base_width, layer1_height, layer1_color, layer2_height, layer2_color, layer3_height, layer3_color, cherry_color, cherry_radius)
 
-if __name__ == "__main__": # to check if the script is being run directly or being imported as a module
-    main()
+main()
